@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,22 +23,139 @@
             AI-Powered Number Recognition & Voice Assistance
         </p>
 
+        <!-- System Status -->
+
         <div class="status-card">
+
             <span class="status-dot"></span>
 
             <div>
                 <strong>System Status</strong>
                 <p id="status">Checking backend...</p>
             </div>
+
         </div>
 
-        <button id="testButton">
-            Test Backend
-        </button>
+
+        <!-- Upload Section -->
+
+        <section class="upload-section">
+
+            <h2>Recognize a Number</h2>
+
+            <div
+                id="dropZone"
+                class="drop-zone"
+            >
+
+                <p>
+                    Drag & drop an image here
+                </p>
+
+                <p>
+                    or
+                </p>
+
+                <label for="imageInput">
+                    Choose Image
+                </label>
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/png, image/jpeg"
+                    hidden
+                >
+
+                <p id="fileName"></p>
+
+            </div>
+
+
+            <!-- Image Preview -->
+
+            <div
+                id="previewContainer"
+                hidden
+            >
+
+                <h3>Image Preview</h3>
+
+                <img
+                    id="imagePreview"
+                    alt="Selected number image"
+                >
+
+            </div>
+
+
+            <button
+                id="recognizeButton"
+            >
+                Recognize Digit
+            </button>
+
+            <p id="recognitionStatus"></p>
+
+        </section>
+
+
+        <!-- Recognition Result -->
+
+        <section
+            id="resultCard"
+            hidden
+        >
+
+            <h2>Recognition Result</h2>
+
+            <div>
+                <strong>Predicted Digit</strong>
+
+                <div id="predictedDigit">
+                    -
+                </div>
+            </div>
+
+            <div>
+                <strong>Confidence</strong>
+
+                <p id="confidence">
+                    -
+                </p>
+            </div>
+
+            <div>
+                <strong>Confidence Level</strong>
+
+                <p id="confidenceLevel">
+                    -
+                </p>
+            </div>
+
+        </section>
+
+
+        <!-- Top Predictions -->
+
+        <section
+            id="predictionsCard"
+            hidden
+        >
+
+            <h2>Top Predictions</h2>
+
+            <div id="topPredictions"></div>
+
+        </section>
 
     </main>
 
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}">
+    </script>
 
 </body>
+
 </html>

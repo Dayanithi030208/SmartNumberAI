@@ -340,9 +340,17 @@ def recognize_digit(image_path):
             )
         })
 
-    return {
-    "digit": predicted_digit,
-    "confidence": round(confidence, 2),
-    "top_predictions": top_predictions,
-    "processed_image": processed_image
+        if confidence >= 85:
+            confidence_level = "high"
+        elif confidence >= 60:
+            confidence_level = "medium"
+        else:
+            confidence_level = "low"
+
+        return {
+        "digit": predicted_digit,
+        "confidence": round(confidence, 2),
+        "confidence_level": confidence_level,
+        "top_predictions": top_predictions,
+        "processed_image": processed_image
     }
