@@ -47,6 +47,8 @@ const confidenceLevel =
 const topPredictions =
     document.getElementById("topPredictions");
 
+const speakButton =
+    document.getElementById("speakButton");
 
 // ------------------------------
 // Backend Health Check
@@ -205,6 +207,63 @@ dropZone.addEventListener(
     }
 );
 
+// ------------------------------
+// Voice Assistance
+// ------------------------------
+
+// ------------------------------
+// Voice Assistance
+// ------------------------------
+
+function speakResult() {
+
+    const digit =
+        predictedDigit.textContent;
+
+    const confidenceValue =
+        confidence.textContent;
+
+    const level =
+        confidenceLevel.textContent;
+
+
+    if (
+        digit === "-" ||
+        confidenceValue === "-"
+    ) {
+
+        recognitionStatus.textContent =
+            "Please recognize a number first.";
+
+        return;
+    }
+
+
+    let message =
+        `The recognized number is ${digit}. ` +
+        `Confidence is ${level}.`;
+
+
+    // Stop previous speech
+
+    window.speechSynthesis.cancel();
+
+
+    const speech =
+        new SpeechSynthesisUtterance(
+            message
+        );
+
+
+    speech.rate = 0.85;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+
+    window.speechSynthesis.speak(
+        speech
+    );
+}
 
 // ------------------------------
 // Recognition
@@ -323,7 +382,9 @@ async function recognizeDigit() {
 
 
         recognitionStatus.textContent =
-            "Recognition completed.";
+            "Recognition completed. Speaking result...";
+
+        speakResult();
 
     } catch (error) {
 
@@ -352,6 +413,14 @@ recognizeButton.addEventListener(
     recognizeDigit
 );
 
+// ------------------------------
+// Speak Button
+// ------------------------------
+
+speakButton.addEventListener(
+    "click",
+    speakResult
+);
 
 // ------------------------------
 // Start
