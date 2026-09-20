@@ -20,6 +20,7 @@ __pycache__/
 # Uploaded files
 uploads/*
 !uploads/.gitkeep
+test_images/
 
 # Generated database
 database/*.db
